@@ -21,11 +21,15 @@ class StorageItemsController < ApplicationController
   end
 
   def create
-    @item = StorageItem.build params[:storage_item]
-    respond_to do |format|
-      if @item.save
-        head 200                  #  FIXME:
-      end
+    puts ">>>>>>>>>>>>>> start creating"
+    @item = StorageItem.new params[:storage_item]
+    issue = Issue.find params[:storage_item][:issue_id]
+    @item.issue = issue
+    if @item.save
+      puts ">>>>>>>>>>>>>>>>>>>>> redirecting yoba !!!!!"
+      redirect_to(storage_items_path(:params => {:project_id => @project.id}))
+    else
+      head 400
     end
   end
 
