@@ -1,14 +1,11 @@
-<% if @project %>
-  <%= tag :input, :type => 'hidden', :value => @project.id, :name => 'project_id' %>
-<% end %>
-
 <div class="splitcontentleft">
   <fieldset class="box tabular">
     <legend><%= l(:create_storage_item) %></legend>
     <p><%= f.text_field :name %> </p>
     <p><%= f.text_field :cost %> </p>
     <p><%= f.text_field :count %> </p>
-    <p><%= f.text_field :production_time %> </p>
+    <p><%= f.text_field :production_time %>
+      <%= calendar_for('storage_item_production_time') %> </p>
     <p><%= f.collection_select :issue_id, @project.issues, :id, :subject %> </p>
     <p><%= f.submit %> </p>
   </fieldset>

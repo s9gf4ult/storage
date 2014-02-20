@@ -1,4 +1,7 @@
-<h2>StorageItemsController#index</h2>
+<div class="contextual">
+<%= link_to l(:label_storage_item_new), new_storage_item_path(:project_id => @project.id),
+    :class => 'icon icon-add' %>
+</div>
 
 <% @items.each do |item| %>
   <%= item.name %>
