@@ -7,6 +7,11 @@ class StorageItem < ActiveRecord::Base
   validate :cost_is_positive
   validate :count_is_positive
 
+  scope :name_like, lambda {|name|
+    pattern = "%#{name}%"
+    where("LOWER(#{table_name}.name) LIKE LOWER(?)", pattern)
+  }
+
   def cost_is_positive
     if cost.present?
       if not cost > 0

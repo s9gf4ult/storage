@@ -6,7 +6,11 @@ Redmine::Plugin.register :storage do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 
-  permission :storage_items, {:storage_items => [:index]}, :public => true
+  permission :view_storage_items, {:storage_items => [:index]}
+  permission :create_storage_items, {:storage_items => [:new, :create]}
+  permission :edit_storage_items, {:storage_items => [:edit, :update]}
+  permission :delete_storage_items, {:storage_items => [:destroy]}
+
   menu(:project_menu, :storage_items,
        {:controller => "storage_items", :action => "index"},
        :caption => "Items",

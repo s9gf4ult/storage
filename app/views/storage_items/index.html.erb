@@ -1,10 +1,22 @@
-<div class="contextual">
-<%= link_to l(:label_storage_item_new), new_storage_item_path(:project_id => @project.id),
-    :class => 'icon icon-add' %>
-</div>
+<% if authorize_for(:storage_items, :new) %>
+  <div class="contextual">
+    <%= link_to l(:label_storage_item_new), new_storage_item_path(:project_id => @project.id), :class => 'icon icon-add' %>
+  </div>
+<% end %>
 
 <%= title l(:label_storage_item_plural) %>
 &nbsp;
+
+<%= form_tag(storage_items_path, :method => :get) do %>
+  <fieldset>
+    <legend><%= l(:label_filter) %></legend>
+    <%= hidden_field_tag 'project_id', @project.id %>
+    <label for="name"><%= l(:field_item_name) %></label>
+    <%= text_field_tag 'name', params[:name], :size => 30 %>
+    <%= submit_tag l(:button_apply), :class => 'small', :name => nil %>
+    <%= link_to l(:button_clear), storage_items_path(:project_id => @project.id), :class => 'icon icon-reload' %>
+  </fieldset>
+<% end %>
 
 <div class="autoscroll">
   <table class="list">
@@ -20,11 +32,17 @@
     <tbody>
       <% @items.each do |item| %>
         <%= content_tag :tr, :class => cycle('odd', 'even') do %>
-          <td><%= link_to item.name, edit_storage_item_path(item) %></td>
+          <% if authorize_for :storage_items, :edit %>
+            <td><%= link_to item.name, edit_storage_item_path(item) %></td>
+          <% else %>
+            <td><%= item.name %></td>
+          <% end %>
           <td><%= item.cost %></td>
           <td><%= item.count %></td>
           <td><%= format_time(item.production_time)%></td>
-          <td><%= delete_link item %> </td>
+          <% if authorize_for :storage_items, :destroy %>
+            <td><%= delete_link item %> </td>
+          <% end %>
         <% end %>
       <% end %>
     </tbody>

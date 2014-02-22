@@ -3,6 +3,7 @@ class StorageItemsController < ApplicationController
 
   before_filter :find_project, :only => [:index, :new]
   before_filter :find_item, :only => [:edit, :update, :destroy]
+  before_filter :authorize
 
   helper :sort
   include SortHelper
@@ -13,6 +14,7 @@ class StorageItemsController < ApplicationController
     sort_update %w(name cost count production_time)
 
     scope = StorageItem.joins(:issue => [:project]).where("projects.id" => @project.id)
+    scope = scope.name_like(params[:name]) if params[:name].present?
     @items = scope.order(sort_clause)
   end
 
