@@ -3,7 +3,23 @@ class StorageItem < ActiveRecord::Base
 
   belongs_to :issue
 
-  validate :name, :presence => true, :unique => true
-  validate :cost, :presence => true
-  validates :count, :presence => true
+  validates :name, :presence => true
+  validate :cost_is_positive
+  validate :count_is_positive
+
+  def cost_is_positive
+    if cost.present?
+      if not cost > 0
+        errors.add(:cost, "Must be positive")
+      end
+    end
+  end
+
+  def count_is_positive
+    if count.present?
+      if not count > 0
+        errors.add(:count, "Must be positive")
+      end
+    end
+  end
 end

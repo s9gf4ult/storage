@@ -1,4 +1,5 @@
 <div class="splitcontentleft">
+  <%= error_messages_for @item %>
   <fieldset class="box tabular">
     <legend><%= l(:create_storage_item) %></legend>
     <p><%= f.text_field :name %> </p>

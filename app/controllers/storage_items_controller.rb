@@ -2,14 +2,18 @@ class StorageItemsController < ApplicationController
   unloadable
 
   before_filter :find_project, :only => [:index, :new]
-  before_filter :find_item, :only => [:show, :edit, :update, :delete]
+  before_filter :find_item, :only => [:edit, :update, :destroy]
+
+  helper :sort
+  include SortHelper
+
 
   def index
-    @items = StorageItem.joins(:issue => [:project]).where("projects.id" => @project.id)
-  end
+    sort_init 'name', 'asc'
+    sort_update %w(name cost count production_time)
 
-  def show
-    @project = @item.issue.try(:project)
+    scope = StorageItem.joins(:issue => [:project]).where("projects.id" => @project.id)
+    @items = scope.order(sort_clause)
   end
 
   def edit
@@ -28,20 +32,28 @@ class StorageItemsController < ApplicationController
     if @item.save
       redirect_to(storage_items_path(:project_id => @project.id))
     else
-      head 400                  #  FIXME:
+      render "new"
     end
   end
 
   def update
-    if @item.update(params[:storage_item])
-      head 200                  #  FIXME:
+    item_params = params[:storage_item]
+    issue = Issue.find item_params[:issue_id] if item_params[:issue_id]
+    @project = issue.try(:project) || @item.issue.try(:project)
+    if @item.update_attributes item_params
+      redirect_to(storage_items_path(:project_id => @project.id))
+    else
+      render "edit"
     end
   end
 
   def destroy
-    if @item.destroy
-      head 200                  #  FIXME:
+    @project = @item.issue.try(:project)
+    redirect_params = {:project_id => @project.id} if @project
+    if not @item.destroy
+      flash[:notice] = "Could not delete item"
     end
+    redirect_to(storage_items_path(redirect_params))
   end
 
   protected
