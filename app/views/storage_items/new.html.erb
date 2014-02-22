@@ -1,3 +1,5 @@
+<%= title [l(:label_storage_item_plural), storage_items_path], l(:label_storage_item_new) %>
+
 <%= labelled_form_for @item do |f| %>
   <%= render :partial => "form", :locals => {:f => f} %>
 <% end %>
