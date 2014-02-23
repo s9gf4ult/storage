@@ -1,0 +1,15 @@
+<% items.each do |item| %>
+  <%= content_tag :tr, :class => cycle('odd', 'even') do %>
+    <% if authorize_for :storage_items, :edit %>
+      <td><%= link_to item.name, edit_storage_item_path(item) %></td>
+    <% else %>
+      <td><%= item.name %></td>
+    <% end %>
+    <td><%= item.cost %></td>
+    <td><%= item.count %></td>
+    <td><%= format_time(item.production_time)%></td>
+    <% if authorize_for :storage_items, :destroy %>
+      <td><%= delete_link item %> </td>
+    <% end %>
+  <% end %>
+<% end %>

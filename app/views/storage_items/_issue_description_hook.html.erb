@@ -1,0 +1,29 @@
+<% if authorize_for :storage_items, :index %>
+<hr/>
+
+<strong><%= l(:label_storage_item_plural) %> </strong>
+
+<% items = StorageItem.where(:issue_id => @issue.id).all %>
+<% if items.count > 0 %>
+<div class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_item_name) %></th>
+        <th><%= l(:field_item_cost) %></th>
+        <th><%= l(:field_item_count) %></th>
+        <th><%= l(:field_item_production_time) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => "storage_items/items_table_body", :locals => {:items => items} %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <div>
+    <%= l(:there_is_no_storage_items) %>
+  </div>
+<% end %>
+<% end %>

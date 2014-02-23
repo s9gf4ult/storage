@@ -1,0 +1,16 @@
+<div class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <%= sort_header_tag('name', :caption => l(:field_item_name)) %>
+        <%= sort_header_tag('cost', :caption => l(:field_item_cost)) %>
+        <%= sort_header_tag('count', :caption => l(:field_item_count)) %>
+        <%= sort_header_tag('production_time', :caption => l(:field_item_production_time)) %>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => "storage_items/items_table_body", :locals => {:items => items} %>
+    </tbody>
+  </table>
+</div>
