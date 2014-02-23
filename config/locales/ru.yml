@@ -1,0 +1,8 @@
+ru:
+  :label_storage_item_plural: Товары
+  :create_storage_item: Создать товар
+  :label_storage_item_new: Добавить товар
+  :field_cost: Цена
+  :field_count: Количество
+  :field_production_time: Дата производства
+  :there_is_no_storage_items: Нет товаров

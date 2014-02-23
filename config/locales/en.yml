@@ -1,3 +1,9 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  :label_storage_item_plural: Items
+  :create_storage_item: Create item
+  :label_storage_item_new: New item
+  :field_cost: Cost
+  :field_count: Count
+  :field_production_time: Production time
+  :there_is_no_storage_items: There is no storage items

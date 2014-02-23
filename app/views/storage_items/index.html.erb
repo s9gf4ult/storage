@@ -9,9 +9,9 @@
 
 <%= form_tag(storage_items_path, :method => :get) do %>
   <fieldset>
-    <legend><%= l(:label_filter) %></legend>
+    <legend><%= l(:label_filter_plural) %></legend>
     <%= hidden_field_tag 'project_id', @project.id %>
-    <label for="name"><%= l(:field_item_name) %></label>
+    <label for="name"><%= l(:field_name) %></label>
     <%= text_field_tag 'name', params[:name], :size => 30 %>
     <%= submit_tag l(:button_apply), :class => 'small', :name => nil %>
     <%= link_to l(:button_clear), storage_items_path(:project_id => @project.id), :class => 'icon icon-reload' %>

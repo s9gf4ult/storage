@@ -3,7 +3,7 @@ class StorageItemsController < ApplicationController
 
   before_filter :find_project, :only => [:index, :new]
   before_filter :find_item, :only => [:edit, :update, :destroy]
-  before_filter :authorize
+  before_filter :authorize, :only => [:index, :edit, :new, :create, :update, :destroy]
 
   helper :sort
   include SortHelper
