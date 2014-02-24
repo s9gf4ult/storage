@@ -13,10 +13,15 @@ Redmine::Plugin.register :storage do
     permission :create_storage_items, {:storage_items => [:new, :create]}
     permission :edit_storage_items, {:storage_items => [:edit, :update]}
     permission :delete_storage_items, {:storage_items => [:destroy]}
+
+    permission :view_storage_tasks, {:storage_tasks => [:index]}, :public => true
   end
 
   menu(:project_menu, :storage_items,
        {:controller => "storage_items", :action => "index"},
        :caption => "Items",
        :param => :project_id)
+  menu(:project_menu, :storage_tasks,
+       {:controller => "storage_tasks", :action => "index"},
+       :caption => "Tasks")
 end
