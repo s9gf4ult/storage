@@ -23,5 +23,6 @@ Redmine::Plugin.register :storage do
        :param => :project_id)
   menu(:project_menu, :storage_tasks,
        {:controller => "storage_tasks", :action => "index"},
-       :caption => "Tasks")
+       :caption => "Tasks",
+       :param => :project_id)
 end

@@ -1,1 +1,21 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'storage_tasks', :plugin => 'storage' %>
+<% end %>
 
+
+<div class="contextual">
+  <%= link_to 'Новая задача', request.original_url, :class => 'icon icon-add' %>
+</div>
+
+<h2>Задачи</h2>
+
+<%= render "tasks_table" %>
+
+<% content_for :sidebar do %>
+  <h3>Heading 3</h3>
+  <% 3.times do %>
+    <div>
+      <%= link_to 'This is a link. A text link', request.original_url %>
+    </div>
+  <% end %>
+<% end %>
