@@ -3,8 +3,13 @@
     <% 7.times do %>
       <tr><td>
           <table class="storage-task">
+            <colgroup>
+              <col width="10" />
+              <col />
+              <col width="100%" />
+            </colgroup>
             <tbody>
-              <tr>
+              <tr class="bold-font">
                 <td>
                   <input type="checkbox">
                 </td>
@@ -25,7 +30,9 @@
                   Сегодня 14:00
                 </td>
                 <td>
-                  Тип задачи
+                  <div class="force-center">
+                    Тип задачи
+                  </div>
                 </td>
                 <td>
                   ООО "Ромашка"
@@ -34,7 +41,12 @@
               <tr>
                 <td></td>
                 <td>
-                  Метка1 Метка2
+                  <div class="label">
+                    Метка 1
+                  </div>
+                  <div class="label-active">
+                    Вторая метка
+                  </div>
                 </td>
               </tr>
             </tbody>

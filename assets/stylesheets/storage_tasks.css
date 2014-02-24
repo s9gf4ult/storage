@@ -1,10 +1,45 @@
 
-table.storage-task td {
-    text-align: left;
-    vertical-align: top;
+table.storage-task {
+  width: 100%;
 }
 
-table.storage-task img.user-picture {
-    width: 40px;
-    height: 40px;
+table.storage-task * {
+  white-space: nowrap;
+}
+
+table.storage-task td {
+  text-align: left;
+  vertical-align: top;
+}
+
+table.storage-task .user-picture {
+  width: 45px;
+  height: 45px;
+}
+
+table.storage-task .bold-font * {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.force-center {
+  text-align: center ! important;
+}
+
+.label {
+  padding: 2px 5px 2px 5px;
+  margin-right: 10px;
+  border: 1px solid #939293;
+  border-radius: 3px;
+  display: inline-block;
+  background-color: #EBEBEB;
+}
+
+.label-active {
+  padding: 2px 5px 2px 5px;
+  margin-right: 10px;
+  border: 1px solid #939293;
+  border-radius: 3px;
+  display: inline-block;
+  background-color: #C0C0C0;
 }
