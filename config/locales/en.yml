@@ -1,9 +1,22 @@
 # English strings go here for Rails i18n
 en:
-  :label_storage_item_plural: Items
-  :create_storage_item: Create item
-  :label_storage_item_new: New item
   :field_cost: Cost
   :field_count: Count
   :field_production_time: Production time
-  :there_is_no_storage_items: There is no storage items
+  :label_create_storage_item: Create item
+  :label_storage_item_new: New item
+  :label_storage_item_plural: Items
+  :label_there_is_no_storage_items: There is no storage items
+  :notice_can_t_delete_item: Could not delete item
+
+  activerecord:
+    errors:
+      models:
+        storage_item:
+          attributes:
+            name:
+              must_be_unique: "Name is not unique"
+            cost:
+              must_be_positive: "Must be positive"
+            count:
+              must_be_positive: "Must be positive"

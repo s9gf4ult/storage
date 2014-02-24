@@ -1,4 +1,4 @@
-<% if authorize_for(:storage_items, :new) %>
+<% if authorize_for(:storage_items, :create) %>
   <div class="contextual">
     <%= link_to l(:label_storage_item_new), new_storage_item_path(:project_id => @project.id), :class => 'icon icon-add' %>
   </div>

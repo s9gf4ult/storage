@@ -1,8 +1,21 @@
 ru:
-  :label_storage_item_plural: Товары
-  :create_storage_item: Создать товар
-  :label_storage_item_new: Добавить товар
   :field_cost: Цена
   :field_count: Количество
   :field_production_time: Дата производства
-  :there_is_no_storage_items: Нет товаров
+  :label_create_storage_item: Создать товар
+  :label_storage_item_new: Добавить товар
+  :label_storage_item_plural: Товары
+  :label_there_is_no_storage_items: Нет товаров
+  :notice_can_t_delete_item: Could not delete item
+
+  activerecord:
+    errors:
+      models:
+        storage_item:
+          attributes:
+            name:
+              must_be_unique: "Такое имя товара уже используется"
+            cost:
+              must_be_positive: "Цена не может быть отрицательной"
+            count:
+              must_be_positive: "Количество не может быть отрицательным"

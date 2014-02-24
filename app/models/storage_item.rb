@@ -17,24 +17,27 @@ class StorageItem < ActiveRecord::Base
   def name_unique_for_project
     project = issue.try(:project)
     if project
-      if self.class.joins(:issue).where("issues.project_id" => project.id, "#{table_name}.name" => name).first
-        errors.add(:name, 'Name must be unique')
+      table_name = self.class.table_name
+      if item = self.class.joins(:issue).where("issues.project_id" => project.id, "#{table_name}.name" => name).first
+        if item.id != self.id
+          errors.add(:name, :must_be_unique)
+        end
       end
     end
   end
 
   def cost_is_positive
     if cost.present?
-      if not cost > 0
-        errors.add(:cost, "Must be positive")
+      if not cost >= 0
+        errors.add(:cost, :must_be_positive)
       end
     end
   end
 
   def count_is_positive
     if count.present?
-      if not count > 0
-        errors.add(:count, "Must be positive")
+      if not count >= 0
+        errors.add(:count, :must_be_positive)
       end
     end
   end
